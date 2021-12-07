@@ -20,7 +20,7 @@ router.get("/:id", (req, res) => {
 
 router.put("/:id", (req, res) => {
 
-  const found = users.some(user => user.id === parseInt(req.params.id));
+  const found = students.some(student => student._id === parseInt(req.params.id));
 
  
 
@@ -28,15 +28,13 @@ router.put("/:id", (req, res) => {
 
     const updateUser = req.body;
 
-    users.forEach(user => {
+    students.forEach(student => {
 
-      if (user.id === parseInt(req.params.id)) {
+      if (student._id === parseInt(req.params.id)) {
 
-        user.name = updateUser.name ? updateUser.name : user.name;
+        student.name = updateUser.name ? updateUser.name : student.name;
 
-        user.email = updateUser.email ? updateUser.email : user.email;
-
-        res.json({ msg: "User updated", user });
+        res.json({ msg: "Student updated", student });
 
       }
 
@@ -56,19 +54,19 @@ router.put("/:id", (req, res) => {
 
 router.delete("/:id", (req, res) => {
 
-  const found = users.some(user => user.id === parseInt(req.params.id));
+  const found = students.some(student => student._id === parseInt(req.params.id));
 
  
 
   if (found) {
 
-    users = users.filter(user => user.id !== parseInt(req.params.id))
+    students = students.filter(student => student._id !== parseInt(req.params.id))
 
     res.json({
 
-      msg: "User deleted",
+      msg: "Student deleted",
 
-      users
+      students
 
     });
 
